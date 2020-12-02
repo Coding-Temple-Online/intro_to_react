@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import Home from './views/Home';
 import About from './views/About';
 import Contact from './views/Contact';
+import Shop from './views/Shop';
 
 export default class App extends Component {
   constructor() {
@@ -49,7 +50,8 @@ export default class App extends Component {
           <Switch>
             <Route exact path='/' render={() => <Home handleSubmit={this.handleSubmit} name={this.state.name} racers={this.state.racers} />} />
             <Route path='/about' render={() => <About name={this.state.name} getStuff={this.getStuff} />} />
-            <Route path='/contact' render={() => < Contact name={this.state.name} stuff={this.state.stuff} />} />
+            <Route path='/contact' render={() => <Contact name={this.state.name} stuff={this.state.stuff} />} />
+            <Route path='/shop' render={() => <Shop />} />
           </Switch>
         </main>
 
