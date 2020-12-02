@@ -5,6 +5,7 @@ import Home from './views/Home';
 import About from './views/About';
 import Contact from './views/Contact';
 import Shop from './views/Shop';
+import Cart from './views/Cart';
 
 export default class App extends Component {
   constructor() {
@@ -14,6 +15,7 @@ export default class App extends Component {
       name: "Derek Hawkins",
       racers: [],
       stuff: '',
+      cart: [],
     }
   }
 
@@ -21,6 +23,36 @@ export default class App extends Component {
     this.setState({
         stuff: 'Something Else'
     })
+  }
+
+  addToCart = (product) => {
+    this.setState({
+      cart: this.state.cart.concat(product)
+    })
+  }
+
+  removeFromCart = product => {
+    let newCart = [...this.state.cart];
+    // let index = newCart.indexOf(product);
+
+    for (let i = 0; i < newCart.length; i++) {
+      const item = newCart[i];
+      if (product === item) {
+        newCart.splice(i, 1)
+        break;
+      }
+    }
+
+    this.setState({
+      cart: newCart
+    })
+
+    // if (index !== 1) {
+    //   newCart.splice(index, 1)
+    //   this.setState({
+    //     cart: newCart
+    //   })
+    // }
   }
 
   handleSubmit = (e) => {
@@ -44,14 +76,15 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <Navbar />
+        <Navbar cart={this.state.cart} />
 
         <main className="container">
           <Switch>
             <Route exact path='/' render={() => <Home handleSubmit={this.handleSubmit} name={this.state.name} racers={this.state.racers} />} />
             <Route path='/about' render={() => <About name={this.state.name} getStuff={this.getStuff} />} />
             <Route path='/contact' render={() => <Contact name={this.state.name} stuff={this.state.stuff} />} />
-            <Route path='/shop' render={() => <Shop />} />
+            <Route path='/shop' render={() => <Shop addToCart={this.addToCart} />} />
+            <Route path='/cart' render={() => <Cart cart={this.state.cart} removeFromCart={this.removeFromCart} />} />
           </Switch>
         </main>
 

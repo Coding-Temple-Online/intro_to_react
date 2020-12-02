@@ -1,26 +1,27 @@
 import React, { Component } from 'react'
+import Product from '../components/Product';
 
 export default class Shop extends Component {
+    constructor() {
+        super();
+
+        this.state = {
+            products: []
+        }
+    }
+
+    componentDidMount() {
+        fetch('http://localhost:5000/shop/products')
+            .then(res => res.json())
+            .then(data => this.setState({ products: data }))
+            .catch(error => console.error(error))
+    }
+
     render() {
         return (
             <React.Fragment>
-                <div class="card-deck">
-                    <div className="col-md-6">
-                        <div class="card">
-                            <img class="card-img-top" src="holder.js/100x180/" alt="" />
-                            <div class="card-body">
-                                <h4 class="card-title">
-                                    Product Title
-                                    <span className="float-right">$0.00</span>    
-                                </h4>
-                                <img src="http://placehold.it/500x500" className="img-fluid" />
-                                <hr />
-                                <p class="card-text">Text</p>
-                                <hr />
-                                <button className="btn btn-outline-success btn-block">Add to Cart</button>
-                            </div>
-                        </div>
-                    </div>    
+                <div className="card-deck">
+                    {this.state.products.map(p => <Product key={p.id} product={p} addToCart={this.props.addToCart} />)}
                 </div>
             </React.Fragment>
         )
