@@ -19,11 +19,9 @@ export default class Shop extends Component {
 
     render() {
         return (
-            <React.Fragment>
-                <div className="card-deck">
-                    {this.state.products.map(p => <Product key={p.id} product={p} addToCart={this.props.addToCart} />)}
-                </div>
-            </React.Fragment>
+            <div className="card-deck">
+                {this.state.products.map(p => <Product key={p.id} product={p} addToCart={this.props.addToCart} />)}
+            </div>
         )
     }
 }

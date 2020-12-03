@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 export default class Product extends Component {
     render() {
@@ -9,10 +10,10 @@ export default class Product extends Component {
                 <div className="card">
                     <div className="card-body">
                         <h4 className="card-title">
-                            {p.name}
+                            <Link className="text-dark" to={`/shop/product/${p.id}`}>{p.name}</Link>
                             <span className="float-right">{`$${p.price}`}</span>    
                         </h4>
-                        <img src={p.image} alt={p.name} className="img-fluid" />
+                        <Link to={`/shop/product/${p.id}`}><img src={p.image} alt={p.name} className="img-fluid" /></Link>
                         <hr />
                         <p className="card-text">{p.description}</p>
                         <hr />

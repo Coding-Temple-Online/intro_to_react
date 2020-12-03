@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 export default class BlogSingle extends Component {
     constructor() {
@@ -21,17 +22,20 @@ export default class BlogSingle extends Component {
         const post = this.state.post;
 
         return (
-            <ul className="list-group">
-                <li className="list-group-item">
-                    <div>
-                        <strong>{post.body}</strong>
-                    </div>
-                    <div>
-                        <small>{moment(post.created_on).fromNow()}</small>
-                    </div>
-                    <cite>&mdash; {post.user_id}</cite>
-                </li>
-            </ul>
+            <React.Fragment>
+                <Link className="btn btn-link" to="/blog">Go back</Link>
+                <ul className="list-group">
+                    <li className="list-group-item">
+                        <div>
+                            <strong>{post.body}</strong>
+                        </div>
+                        <div>
+                            <small>{moment(post.created_on).fromNow()}</small>
+                        </div>
+                        <cite>&mdash; {post.user_id}</cite>
+                    </li>
+                </ul>
+            </React.Fragment>
         )
     }
 }

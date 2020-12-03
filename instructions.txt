@@ -1,11 +1,4 @@
-Create a new view called Contact
+Do the same thing from this morning with the Blog posts, as we did with the Products.
 
-1. Build the Component
-2. Build the Route
-3. Add the Navigation bar link
-
-                      Router
-                        |
-                       App
-                    |    |    |
-                  Home About Contact
+1. Make the product title and image links that will link to the 
+   individual page for said product and all of its information.

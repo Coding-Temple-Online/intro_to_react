@@ -8,6 +8,7 @@ import Shop from './views/Shop';
 import Cart from './views/Cart';
 import Blog from './views/Blog';
 import BlogSingle from './views/BlogSingle';
+import ShopSingle from './views/ShopSingle';
 
 export default class App extends Component {
   constructor() {
@@ -86,6 +87,7 @@ export default class App extends Component {
             <Route exact path='/about' render={() => <About name={this.state.name} getStuff={this.getStuff} />} />
             <Route exact path='/contact' render={() => <Contact name={this.state.name} stuff={this.state.stuff} />} />
             <Route exact path='/shop' render={() => <Shop addToCart={this.addToCart} />} />
+            <Route exact path="/shop/product/:id" render={({ match }) => <ShopSingle addToCart={this.addToCart} match={match} />} />
             <Route exact path='/cart' render={() => <Cart cart={this.state.cart} removeFromCart={this.removeFromCart} />} />
             <Route exact path='/blog' render={() => <Blog />} />
             <Route exact path="/blog/:id" render={({ match }) => <BlogSingle match={match} />} />
