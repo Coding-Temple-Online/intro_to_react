@@ -2,23 +2,37 @@ import React, { Component } from 'react'
 import CartItem from '../components/CartItem';
 
 export default class Cart extends Component {
-    getCount = (cartItem, cartList) => {
-        let count = 0;
-        for (const obj of cartList) {
-            if (cartItem.name === obj.name) {
-                count ++;
-            }
-        }
-        return count
-    }
+    // getCount = (cartItem, cartList) => {
+    //     let count = 0;
+    //     for (const obj of cartList) {
+    //         if (cartItem.name === obj.name) {
+    //             count ++;
+    //         }
+    //     }
+    //     return count
+    // }
+
+    // {
+    //     1: {
+    //         "product": Product Object Stuff,
+    //         "quantity": 3
+    //     }
+    // }
 
     render() {
-        const cart = [...new Set(this.props.cart)]
+        const cart = this.props.cart;
+        console.log(Object.values(cart))
+        // for (const key in cart) {
+        //     if (this.props.cart.hasOwnProperty(key)) {
+        //         const element = this.props.cart[key];
+                
+        //     }
+        // }
 
         return (
             <React.Fragment>
                 {
-                    !cart.length < 1 ?
+                    !Object.keys(cart).length < 1 ?
                     (
                         <div className=" table-responsive">
                             <table className="table table-striped table-inverse">
@@ -31,7 +45,11 @@ export default class Cart extends Component {
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    {cart.map(p => <CartItem removeFromCart={this.props.removeFromCart} key={p.id} product={p} cart={this.props.cart} getCount={this.getCount} /> )}
+                                    { 
+
+                                    }
+                                    {Object.values(cart).map(p => <CartItem removeFromCart={this.props.removeFromCart} key={p.product.id} product={p} quantity={p.quantity} />)}
+                                    {/* {cart.map(p => <CartItem removeFromCart={this.props.removeFromCart} key={p.id} product={p} cart={this.props.cart} /> )} */}
                                 </tbody>
                             </table>
                         </div>

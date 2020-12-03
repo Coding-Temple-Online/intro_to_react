@@ -3,10 +3,12 @@ import './navbar.css';
 import { Link } from 'react-router-dom';
 
 export default class Navbar extends Component {
-    sumCartProducts = aList => {
+    sumCartProducts = anObj => {
+        console.log(Object.values(anObj))
+        let aList = Object.values(anObj)
         let initialSum = 0;
         for (const obj of aList) {
-            initialSum += obj.price
+                initialSum += obj.product.price * obj.quantity
         }
         return Number(initialSum).toFixed(2)
     }
@@ -36,7 +38,7 @@ export default class Navbar extends Component {
                         <li className="nav-item">
                             <Link className="nav-link" to="/shop">
                                 Shop&nbsp;
-                                <span className="badge badge-secondary"> {this.props.cart.length} | ${this.sumCartProducts(this.props.cart)} </span>
+                                <span className="badge badge-secondary"> {this.props.numitems} | ${this.sumCartProducts(this.props.cart)} </span>
                             </Link>
                         </li>
                         <li className="nav-item">

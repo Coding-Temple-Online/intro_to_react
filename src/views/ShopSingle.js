@@ -27,7 +27,7 @@ export default class ShopSingle extends Component {
                             {p.name}
                             <span className="float-right">{`$${p.price}`}</span>
                         </h3>
-                        <img className="card-img-top" className="img-fluid" style={{ width: '100%' }} src={p.image} alt={p.name} />
+                        <img className="card-img-top img-fluid" style={{ width: '100%' }} src={p.image} alt={p.name} />
                         <p className="card-text">{p.description}</p>
                     </div>
                     <div className="card-footer">

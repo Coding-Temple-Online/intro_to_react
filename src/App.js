@@ -18,7 +18,8 @@ export default class App extends Component {
       name: "Derek Hawkins",
       racers: [],
       stuff: '',
-      cart: [],
+      cart: {},
+      numitems: 0
     }
   }
 
@@ -29,33 +30,69 @@ export default class App extends Component {
   }
 
   addToCart = (product) => {
+    // Make a hashmap that will hold products and quantity of products
+
+    // Constant lookup time === Almost no processing time needed to find item
+    // If we did a For loop, we'd have to mandatorily loop through it until we found it (which takes time) until
+    // if/when we find the item. Then we can tell the for loop to stop
+    let newCart = this.state.cart;
+    let newnumitems = this.state.numitems;
+
+    // If there is nothing in the cart
+    if (Object.keys(newCart).length === 0) {
+
+      // Add a new object into the cart
+      let newProductObj = {
+        'product': product,
+        quantity: 1
+      }
+      newCart[product.id] = newProductObj
+      newnumitems = 1;
+    }
+
+    // Otherwise
+    else {
+
+      // Add the quantity of the pre-existing object by 1
+      if (newCart.hasOwnProperty(product.id)) {
+        newCart[product.id].quantity++;
+        newnumitems += 1;
+      }
+ 
+      // Otherwise create the product
+      else {
+        let newProductObj = {
+            'product': product,
+            quantity: 1
+          }
+          newCart[product.id] = newProductObj
+          newnumitems += 1;
+      }
+    }
     this.setState({
-      cart: this.state.cart.concat(product)
+      cart: newCart,
+      numitems: newnumitems
     })
   }
 
   removeFromCart = product => {
-    let newCart = [...this.state.cart];
-    // let index = newCart.indexOf(product);
+    let newCart = this.state.cart;
+    let newnumitems = this.state.numitems;
 
-    for (let i = 0; i < newCart.length; i++) {
-      const item = newCart[i];
-      if (product === item) {
-        newCart.splice(i, 1)
-        break;
-      }
+    if(newCart[product.id].quantity > 1) {
+      newCart[product.id].quantity--;
+      newnumitems -= 1;
+    }
+    else {
+      delete newCart[product.id];
+      newnumitems -= 1
     }
 
     this.setState({
-      cart: newCart
+      cart: newCart,
+      numitems: newnumitems
     })
 
-    // if (index !== 1) {
-    //   newCart.splice(index, 1)
-    //   this.setState({
-    //     cart: newCart
-    //   })
-    // }
   }
 
   handleSubmit = (e) => {
@@ -76,10 +113,14 @@ export default class App extends Component {
     e.target.reset();
   }
   
+  componentDidMount() {
+    console.log(this.state.cart)
+  }
+  
   render() {
     return (
       <div>
-        <Navbar cart={this.state.cart} />
+        <Navbar cart={this.state.cart} numitems={this.state.numitems} />
 
         <main className="container">
           <Switch>

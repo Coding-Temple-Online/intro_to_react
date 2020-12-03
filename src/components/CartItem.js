@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 export default class CartItem extends Component {
     render() {
-        const p = this.props.product
+        const p = this.props.product.product
 
         return (
             <tr>
@@ -16,9 +16,9 @@ export default class CartItem extends Component {
                     </div>
                 </td>
                 <td>{`$${p.price}`}</td>
-                <td>{this.props.getCount(p, this.props.cart)}</td>
+                <td>{this.props.quantity}</td>
                 <td>
-                    <button onClick={() => this.props.removeFromCart(p)} className="btn btn-outline-danger btn-lg">
+                    <button onClick={() => this.props.removeFromCart(this.props.product)} className="btn btn-outline-danger btn-lg">
                         <i className="fa fa-shopping-cart"></i>
                     </button>
                 </td>
