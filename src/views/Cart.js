@@ -15,7 +15,7 @@ export default class Cart extends Component {
     // {
     //     1: {
     //         "product": Product Object Stuff,
-    //         "quantity": 3
+    //         "quantity": 6
     //     }
     // }
 
@@ -45,9 +45,6 @@ export default class Cart extends Component {
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    { 
-
-                                    }
                                     {Object.values(cart).map(p => <CartItem removeFromCart={this.props.removeFromCart} key={p.product.id} product={p} quantity={p.quantity} />)}
                                     {/* {cart.map(p => <CartItem removeFromCart={this.props.removeFromCart} key={p.id} product={p} cart={this.props.cart} /> )} */}
                                 </tbody>

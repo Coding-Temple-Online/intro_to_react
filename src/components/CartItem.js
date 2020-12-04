@@ -18,7 +18,7 @@ export default class CartItem extends Component {
                 <td>{`$${p.price}`}</td>
                 <td>{this.props.quantity}</td>
                 <td>
-                    <button onClick={() => this.props.removeFromCart(this.props.product)} className="btn btn-outline-danger btn-lg">
+                    <button onClick={() => this.props.removeFromCart(p)} className="btn btn-outline-danger btn-lg">
                         <i className="fa fa-shopping-cart"></i>
                     </button>
                 </td>
