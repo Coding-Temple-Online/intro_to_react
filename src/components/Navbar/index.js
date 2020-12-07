@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 export default class Navbar extends Component {
     sumCartProducts = anObj => {
-        console.log(Object.values(anObj))
         let aList = Object.values(anObj)
         let initialSum = 0;
         for (const obj of aList) {
@@ -25,6 +24,9 @@ export default class Navbar extends Component {
                     <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
                         <li className="nav-item active">
                             <Link className="nav-link" to="/">Home <span className="sr-only">(current)</span></Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/employees">Employees</Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="/about">About</Link>

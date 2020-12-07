@@ -9,6 +9,7 @@ import Cart from './views/Cart';
 import Blog from './views/Blog';
 import BlogSingle from './views/BlogSingle';
 import ShopSingle from './views/ShopSingle';
+import Employees from './views/Employees';
 
 export default class App extends Component {
   constructor() {
@@ -113,10 +114,6 @@ export default class App extends Component {
     e.target.reset();
   }
   
-  componentDidMount() {
-    console.log(this.state.cart)
-  }
-  
   render() {
     return (
       <div>
@@ -132,6 +129,7 @@ export default class App extends Component {
             <Route exact path='/cart' render={() => <Cart cart={this.state.cart} removeFromCart={this.removeFromCart} />} />
             <Route exact path='/blog' render={() => <Blog />} />
             <Route exact path="/blog/:id" render={({ match }) => <BlogSingle match={match} />} />
+            <Route exact path="/employees" render={() => <Employees />} />
           </Switch>
         </main>
 

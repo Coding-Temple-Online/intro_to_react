@@ -1,6 +1,16 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 export default class Home extends Component {
+    runTest = () => {
+        fetch('http://localhost:5000/shop/test',
+        {
+            method: 'POST',
+            body: JSON.parse({ firstName: 'Derek' })
+        })
+        .then(res => res.json())
+        .then(data => console.log(data))
+    }
+
     render() {
         const racers = this.props.racers;
 
@@ -15,6 +25,7 @@ export default class Home extends Component {
                     <input type="text" className="form-control mb-2 mr-sm-2" name="season" placeholder="Season" />
                     <button type="submit" className="btn btn-outline-info mb-2">Submit</button>
                 </form>
+                <button onClick={this.runTest} className="btn btn-outline-success"> Test </button>
 
                 <div className="table-responsive">
                     <table className="table table-striped table-inverse">
