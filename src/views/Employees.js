@@ -70,6 +70,7 @@ export default class Employees extends Component {
                                 <li className="list-group-item">State <span className="float-right">{employee.state}</span></li>
                                 <li className="list-group-item">
                                     Skills
+                                    <hr />
                                     {Object.keys(employee).length ? Object.entries(employee.skills).map(s => (
                                         <div key={s.id}>{s[0]}  <span className="float-right">{s[1]}</span></div>
                                     )) : null}
